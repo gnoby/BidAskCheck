@@ -1,0 +1,57 @@
+<html>
+  <head>
+	<link rel="icon" href="favicon.ico" type="image/png">
+    <title>PV-Charge</title>
+    <meta http-equiv="refresh" content="10">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script>
+		$(document).ready(function()
+		{
+		  $('#overwrite').change(function() 
+		  {
+			if(this.checked == true)
+			{
+				 $.post( "", "overwriteon=true" );
+				 $('#ampere').attr('disabled', false);
+			}
+			else
+			{
+				$.post( "", "overwriteoff=true" );
+				$('#ampere').attr('disabled', true);
+			}
+		  });   
+		  $('#ampere').change(function() 
+		  {
+				$.post( "", "ampere=" +this.value );
+		  });
+		  $('#factor2').change(function()
+		  {
+				$.post( "", "factor2=" +this.value );
+		  });
+		  $('#pause').change(function()
+		  {
+				if(this.checked == true)
+				{
+					$.post( "", "pause=true" );
+				}
+				else
+				{
+					$.post( "", "pauseoff=true" );
+				}
+		  });
+		  $('#fixed_minimum_ampere').change(function()
+		  {
+				$.post( "", "fixed_minimum_ampere=" +this.value );
+		  });
+		  $('#max_charge').change(function()
+		  {
+				$.post( "", "max_charge=" +this.value );
+		  });
+			$( "#quit" ).click(function() {
+			  $.post( "", "quit=true" );
+			});  		  
+		});
+	</script>
+  </head>
+  <body>
+	<button name="quit" id="quit" value="quit">Anwendung beenden</button>
